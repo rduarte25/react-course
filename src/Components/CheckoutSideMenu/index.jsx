@@ -4,6 +4,7 @@ import { ShoppingCartContext } from "../../Context";
 
 import "./styles.css";
 import OrderCard from "../OrderCard";
+import { totalPrice } from "../../utils";
 function CheckoutSideMenu() {
   const { isCheckoutOpen, closeCheckout, cart, setCart } = useContext(ShoppingCartContext);
 
@@ -34,6 +35,12 @@ function CheckoutSideMenu() {
             onDelete={handleDelete}            
             />
         ))}
+      </div>
+      <div className="px-6 ">
+        <p className="flex justify-between items-center">
+          <span className="font-light">Total: </span>
+          <span className="font-medium text-2xl">${totalPrice(cart)}</span>
+        </p>
       </div>
     </aside>
   )
