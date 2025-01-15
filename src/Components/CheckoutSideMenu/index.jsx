@@ -6,11 +6,23 @@ import "./styles.css";
 import OrderCard from "../OrderCard";
 import { totalPrice } from "../../utils";
 function CheckoutSideMenu() {
-  const { isCheckoutOpen, closeCheckout, cart, setCart } = useContext(ShoppingCartContext);
+  const { isCheckoutOpen, closeCheckout, cart, setCart, setOrder } = useContext(ShoppingCartContext);
 
   const handleDelete = (id) => {
     const filtered = cart.filter((element) => element.id !== id);
     setCart(filtered);
+  }
+
+  const handleCheckout = () => {
+    const orderToAdd = {
+      date: '15.01.2025',
+      products: cart,
+      totalProducts: cart.length,
+      totalPrice: totalPrice(cart),
+    }
+
+    setOrder((prev) => [...prev, orderToAdd]);
+    setCart([]);
   }
 
   return (
@@ -24,7 +36,7 @@ function CheckoutSideMenu() {
           />
         </div>
       </div>
-      <div className="px-6 overflow-y-scroll">
+      <div className="px-6 overflow-y-scroll flex-1">
         {cart.map((item) => (
           <OrderCard 
             key={`${item.id}-${item.title}`} 
@@ -36,11 +48,16 @@ function CheckoutSideMenu() {
             />
         ))}
       </div>
-      <div className="px-6 ">
-        <p className="flex justify-between items-center">
+      <div className="px-6 mb-6">
+        <p className="flex justify-between items-center mb-2">
           <span className="font-light">Total: </span>
           <span className="font-medium text-2xl">${totalPrice(cart)}</span>
         </p>
+        <button 
+          className="w-full bg-black py-3 text-white rounded-lg" 
+          onClick={() => handleCheckout()}>
+            Checkout
+        </button>
       </div>
     </aside>
   )

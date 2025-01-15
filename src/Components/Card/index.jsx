@@ -6,7 +6,7 @@ import { CheckIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { ShoppingCartContext } from "../../Context";
 
 Card.propTypes = {
-  item: PropTypes.node.isRequired,
+  item: PropTypes.object,
 };
 
 function Card({item}) {
