@@ -33,4 +33,4 @@ function OrderCard({ id, title, imageUrl, price, onDelete }) {
   )
 }
 
-export default OrderCard
+export { OrderCard }

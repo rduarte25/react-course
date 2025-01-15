@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-import Card from "../../Components/Card"
+import { Card } from "../../Components/Card"
 import { Layout } from "../../Components/Layout"
 import { ProductDetail } from "../../Components/ProducDetail";
 

@@ -4,7 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 import { ShoppingCartContext } from "../../Context";
 
 import "./styles.css";
-import OrderCard from "../OrderCard";
+import { OrderCard } from "../OrderCard";
 import { totalPrice } from "../../utils";
 function CheckoutSideMenu() {
   const { isCheckoutOpen, closeCheckout, cart, setCart, setOrder } = useContext(ShoppingCartContext);
@@ -66,4 +66,4 @@ function CheckoutSideMenu() {
   )
 }
 
-export default CheckoutSideMenu
+export { CheckoutSideMenu }

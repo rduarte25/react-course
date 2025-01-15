@@ -71,4 +71,4 @@ function Card({item}) {
   )
 }
 
-export default Card
+export { Card }
