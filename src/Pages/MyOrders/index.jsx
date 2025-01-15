@@ -9,8 +9,8 @@ function MyOrders() {
 
     return (
       <Layout>
-        <div className="flex w-80 justify-center items-center relative">
-          <h1>My orders</h1>
+        <div className="flex w-80 justify-center items-center relative mb-4">
+          <h1 className="font-medium text-xl">My orders</h1>
         </div>
         {order.map((item, index) => (
           <Link 
