@@ -7,7 +7,7 @@ import "./styles.css";
 import { OrderCard } from "../OrderCard";
 import { totalPrice } from "../../utils";
 function CheckoutSideMenu() {
-  const { isCheckoutOpen, closeCheckout, cart, setCart, setOrder } = useContext(ShoppingCartContext);
+  const { isCheckoutOpen, closeCheckout, cart, setCart, setOrder, setSearchByCategory, setSearchByTitle } = useContext(ShoppingCartContext);
 
   const handleDelete = (id) => {
     const filtered = cart.filter((element) => element.id !== id);
@@ -21,9 +21,12 @@ function CheckoutSideMenu() {
       totalProducts: cart.length,
       totalPrice: totalPrice(cart),
     }
-
-    setOrder((prev) => [...prev, orderToAdd]);
-    setCart([]);
+    if (cart.length > 0) {
+      setOrder((prev) => [...prev, orderToAdd]);
+      setCart([]);
+      setSearchByCategory(null);
+      setSearchByTitle(null);
+    }
   }
 
   return (

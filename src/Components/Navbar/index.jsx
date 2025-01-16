@@ -6,7 +6,7 @@ import { ShoppingCartContext } from '../../Context';
 
 function Navbar() {
     const activeStyle = "underline underline-offset-4";
-    const { count,setSearchByCategory } = useContext(ShoppingCartContext);
+    const { cart,setSearchByCategory } = useContext(ShoppingCartContext);
   return (
     <nav className='flex justify-between items-center fixes z-10 w-full py-5 px-8 text-sm font-light top-0'>
         <ul className='flex items-center gap-3'>
@@ -90,7 +90,7 @@ function Navbar() {
             <li className='flex items-center'>
                 <ShoppingBagIcon className="size-6 text-black" /> 
                 <div>
-                    {count}
+                    {cart.length}
                 </div>
             </li>
         </ul>

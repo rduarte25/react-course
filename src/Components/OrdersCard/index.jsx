@@ -9,7 +9,7 @@ OrdersCard.propTypes = {
 function OrdersCard({ totalPrice, totalProducts}) {
   return (
     <div className="flex justify-between items-center mb-4 border border-black w-80 p-4 rounded-lg">
-        <d className="flex justify-between w-full">
+        <div className="flex justify-between w-full">
           <p className="flex flex-col">
             <span>15.01.2025</span>
             <span className="font-light">{totalProducts} articles</span>
@@ -18,7 +18,7 @@ function OrdersCard({ totalPrice, totalProducts}) {
             <span className="font-medium text-2xl">${totalPrice}</span>
             <ChevronRightIcon className="h-8 w-8 text-black cursor-pointer" />
           </p>
-        </d>
+        </div>
     </div>
   )
 }
