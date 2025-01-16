@@ -42,7 +42,9 @@ function ShoppingCartProvider({children}) {
 
     const [items, setItems] = useState(null);
 
-    const [searchByTitle, setSearchByTitle] = useState(null);   
+    const [searchByTitle, setSearchByTitle] = useState(null);
+
+    const [searchByCategory, setSearchByCategory] = useState(null);   
     
     useEffect(() => {
         fetch('https://api.escuelajs.co/api/v1/products')
@@ -54,12 +56,29 @@ function ShoppingCartProvider({children}) {
         return items?.filter((element) => element.title.toLowerCase().includes(searchByTitle.toLowerCase()));
     }
 
+    const filteredItemsByCategory = (items, searchByCategory) => {
+        return items?.filter((element) => element.category.name.toLowerCase().includes(searchByCategory.toLowerCase()));
+    }
+
+    const filteredItemsByTitleAndCategory = (items, searchByCategory) => {
+        return items?.filter((element) => element.title.toLowerCase().includes(searchByTitle.toLowerCase()) && element.category.name.toLowerCase().includes(searchByCategory.toLowerCase()));
+    }
+
     useEffect(() => {
-        console.log('searchByTitle: ', searchByTitle);
-        if (searchByTitle) {
+        if (searchByTitle && !searchByCategory) {
             setFilteredItems(filteredItemsByTitle(items, searchByTitle));
         }
-    }, [items, searchByTitle]);
+        if (searchByCategory && !searchByTitle) {
+            setFilteredItems(filteredItemsByCategory(items, searchByCategory));
+        }
+
+        if (searchByCategory && searchByTitle) {
+            setFilteredItems(filteredItemsByTitleAndCategory(items, searchByCategory));
+        }
+        if (!searchByCategory && !searchByTitle) {
+            setFilteredItems(items);
+        }
+    }, [items, searchByTitle, searchByCategory]);
 
     return (
         <ShoppingCartContext.Provider
@@ -84,6 +103,8 @@ function ShoppingCartProvider({children}) {
                 setSearchByTitle,
                 filteredItems,
                 setFilteredItems,
+                searchByCategory,
+                setSearchByCategory,
             }}
         >
             {children}

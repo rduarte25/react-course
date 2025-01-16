@@ -6,45 +6,60 @@ import { ShoppingCartContext } from '../../Context';
 
 function Navbar() {
     const activeStyle = "underline underline-offset-4";
-    const { count } = useContext(ShoppingCartContext);
+    const { count,setSearchByCategory } = useContext(ShoppingCartContext);
   return (
     <nav className='flex justify-between items-center fixes z-10 w-full py-5 px-8 text-sm font-light top-0'>
         <ul className='flex items-center gap-3'>
             <li className='font-semibold text-lg'>
-                <NavLink to="/">Shopi</NavLink>
+                <NavLink 
+                    to="/"
+                    onClick={() => setSearchByCategory(null)}
+                >Shopi</NavLink>
             </li>
             <li>
-                <NavLink to="/" className={
+                <NavLink to="/" 
+                    onClick={() => setSearchByCategory(null)}
+                    className={
                     ({isActive}) => 
                     isActive ? activeStyle : undefined
                 }>All</NavLink>
             </li>
             <li>
-                <NavLink to="/clothes" className={
+                <NavLink to="/clothes" 
+                    onClick={() => setSearchByCategory("clothes")}
+                    className={
                     ({isActive}) => 
                     isActive ? activeStyle : undefined
                 }>Clothes</NavLink>
             </li>
             <li>
-                <NavLink to="/electronics" className={
+                <NavLink to="/electronics" 
+                    onClick={() => setSearchByCategory("electronics")}
+                    className={
                     ({isActive}) => 
                     isActive ? activeStyle : undefined
                 }>Electronics</NavLink>
             </li>
             <li>
-                <NavLink to="/furnitures" className={
+                <NavLink to="/fornitures" 
+                    onClick={() => setSearchByCategory("fornitures")}
+                    className={
                     ({isActive}) => 
                     isActive ? activeStyle : undefined
                 }>Furnitures</NavLink>
             </li>
             <li>
-                <NavLink to="/toys" className={
+                <NavLink to="/toys" 
+                    onClick={() => setSearchByCategory("toys")}
+                    className={
                     ({isActive}) => 
                     isActive ? activeStyle : undefined
                 }>Toys</NavLink>
             </li>
             <li>
-                <NavLink to="/other" className={
+                <NavLink to="/others" 
+                    onClick={() => setSearchByCategory("others")}
+                    className={
                     ({isActive}) => 
                     isActive ? activeStyle : undefined
                 }>Others</NavLink>

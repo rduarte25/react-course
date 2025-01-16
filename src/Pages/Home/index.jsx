@@ -7,7 +7,13 @@ import { ShoppingCartContext } from "../../Context";
 
 function Home() {
 
-  const { items, searchByTitle, setSearchByTitle, filteredItems} = useContext(ShoppingCartContext);
+  const { 
+    items, 
+    searchByTitle, 
+    setSearchByTitle, 
+    filteredItems, 
+    searchByCategory
+  } = useContext(ShoppingCartContext);
 
   return (
     <Layout>
@@ -21,10 +27,16 @@ function Home() {
         onChange={(event) => setSearchByTitle(event.target.value)}
         />
       <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-        {(!searchByTitle && items) && items.map((item) => (
+        {((!searchByTitle && !searchByCategory) && items) && items.map((item) => (
           <Card key={item.id} item={item}/>
         ))}
-        {(searchByTitle && filteredItems) && filteredItems.map((item) => (
+        {((searchByTitle && !searchByCategory) && filteredItems) && filteredItems.map((item) => (
+          <Card key={item.id} item={item}/>
+        ))}
+        {((searchByCategory && !searchByTitle) && filteredItems) && filteredItems.map((item) => (
+          <Card key={item.id} item={item}/>
+        ))}
+        {((searchByCategory && searchByTitle) && filteredItems) && filteredItems.map((item) => (
           <Card key={item.id} item={item}/>
         ))}
       </div>
